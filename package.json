@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npx nodemon index.mjs"
   },
+  "engines": { "node": "14.x" },
   "dependencies": {
     "express": "^4.17.1",
     "cors": "^2.8.5",
