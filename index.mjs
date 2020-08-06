@@ -5,8 +5,6 @@ import apiRouter from './apiRouter.mjs'
 
 env.config();
 
-const SERVER_PORT = process.env.SERVER_PORT;
-
 var app = express();
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
@@ -16,4 +14,4 @@ var app = express();
 
     apiRouter(app);
 
-app.listen(SERVER_PORT || 8000, () => console.log(`Express server running at ${SERVER_PORT}`));
+app.listen(process.env.SERVER_PORT || 8000, () => console.log(`Express server running at ${process.env.SERVER_PORT}`));
