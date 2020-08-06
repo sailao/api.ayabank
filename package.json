@@ -4,7 +4,7 @@
   "main": "index.mjs",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "start": "npx nodemon index.mjs"
   },
   "dependencies": {
     "express": "^4.17.1",
