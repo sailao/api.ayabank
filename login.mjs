@@ -31,7 +31,7 @@ const Login = (app, db)=>{
                 }
                 if(isMatch){
                     var token = jwt.sign(data, 'secret');
-                    res.json(token)
+                    res.json({"token": token})
                 }
             })
         });
