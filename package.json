@@ -4,14 +4,19 @@
   "main": "index.mjs",
   "license": "MIT",
   "scripts": {
-    "start": "npx nodemon index.mjs"
+    "start": "nodemon"
   },
-  "engines": { "node": "14.x" },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
-    "express": "^4.17.1",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "body-parser": "^1.19.0",
-    "nodemon": "^2.0.4"
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^2.2.33",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1"
   }
 }
