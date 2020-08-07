@@ -8,7 +8,6 @@ const Login = (app, db)=>{
     const LoginController = (req, res)=>{
         var username = req.body.username;
         var password = req.body.password;
-        const hash = bcrypt.hashSync(password, 8);
         
         // db.collection("users").findOne({username}, (err, data)=> {
         //     console.log(data, req.body.username)
@@ -23,7 +22,7 @@ const Login = (app, db)=>{
                 })
             }
 
-            bcrypt.compare(data.password, hash, (err, isMatch)=>{
+            bcrypt.compare(password, data.password, (err, isMatch)=>{
                 if(err){
                     res.redirect('/')
                 }
@@ -31,7 +30,7 @@ const Login = (app, db)=>{
                     res.json(404)
                 }
                 if(isMatch){
-                    var token = jwt.sign(data[0], 'secret');
+                    var token = jwt.sign(data, 'secret');
                     res.json(token)
                 }
             })
