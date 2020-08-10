@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const RegisterValidation = (req, res, next)=> next()
 
@@ -7,7 +8,6 @@ const Register = (app, db)=>{
     const RegisterController = (req, res)=>{
         var username = req.body.username;
         var password = req.body.password;
-        // const SALT = process.env.SALT_KEY;
         const hash = bcrypt.hashSync(password, 8);
 
         db.collection('users').insertOne({
@@ -16,10 +16,19 @@ const Register = (app, db)=>{
         },(err, user) => {
             if(err){
                 console.log(err)
-                res.json("Mongo Error")
+                return res.json("Mongo Error")
             }
-            db.close();
-            res.json(user);
+
+            res
+            .status(201)
+            .json({
+                "code": 201, 
+                "message": "user created",
+                "data": {
+                    username: user.ops[0].username,
+                    token: jwt.sign(user.ops[0], 'secret')
+                }
+            });
         });
     }
 

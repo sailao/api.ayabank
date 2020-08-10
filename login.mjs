@@ -10,8 +10,10 @@ const Login = (app, db)=>{
         var password = req.body.password;
 
         db.collection("users").findOne({username}, (err, data)=> {
+            console.log(data, username)
             if(!data){
-                res.json({
+                return res.status(404)
+                .json({
                     "code": 404,
                     "message": "user not found."
                 })
@@ -21,12 +23,24 @@ const Login = (app, db)=>{
                 if(err){
                     res.redirect('/')
                 }
+
                 if(!isMatch){
-                    res.json(404)
+                    res
+                    .status(404)
+                    .json({
+                        "code": 404, 
+                        "message": "password not match"
+                    })
                 }
+
                 if(isMatch){
                     var token = jwt.sign(data, 'secret');
-                    res.json({"token": token})
+                    res
+                    .json({
+                        "code": 200, 
+                        "message": "success",
+                        "token": token
+                    })
                 }
             })
         });
