@@ -43,7 +43,7 @@ const Register = ({handleRegister})=> {
             Password: <input style={styles.inputSize} required ref={password} type="password"/><br/>
             Email: <input style={styles.inputSize} required ref={email} type="email"/><br/>
             Phone: <input style={styles.inputSize} required ref={phone} type="tel"/><br/>
-            Address: <input style={styles.inputSize} required ref={address} type="text"/><br/>
+            Address: <textarea rows="5" required ref={address}/><br/>
             <button style={styles.button} ref={registerBtn} onClick={registerAction}>REGISTER</button>
         </div>)
 }
