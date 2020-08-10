@@ -8,11 +8,17 @@ const Register = (app, db)=>{
     const RegisterController = (req, res)=>{
         var username = req.body.username;
         var password = req.body.password;
-        const hash = bcrypt.hashSync(password, 8);
+        var email = req.body.email;
+        var phone = req.body.phone;
+        var address = req.body.address;
+        const hashPassword = bcrypt.hashSync(password, 8);
 
         db.collection('users').insertOne({
             username: username,
-            password: hash
+            password: hashPassword,
+            email: email,
+            phone: phone,
+            address: address
         },(err, user) => {
             if(err){
                 console.log(err)

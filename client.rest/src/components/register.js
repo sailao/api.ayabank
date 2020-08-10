@@ -29,15 +29,21 @@ const Register = ({handleRegister})=> {
 
     var username = useRef();
     var password = useRef();
+    var email = useRef();
+    var phone = useRef();
+    var address = useRef();
     var registerBtn = useRef();
 
-    const registerAction = ()=> handleRegister(username.current.value, password.current.value, registerBtn)
+    const registerAction = ()=> handleRegister(username.current.value, password.current.value, email.current.value, phone.current.value, address.current.value, registerBtn)
 
     return (
         <div style={styles.container}>
             <h1>AYA iBanking</h1>
-            User Name: <input style={styles.inputSize} ref={username} autoFocus type="text"/><br/>
-            Password: <input style={styles.inputSize} ref={password} type="password"/><br/>
+            User Name: <input style={styles.inputSize} required ref={username} autoFocus type="text"/><br/>
+            Password: <input style={styles.inputSize} required ref={password} type="password"/><br/>
+            Email: <input style={styles.inputSize} required ref={email} type="email"/><br/>
+            Phone: <input style={styles.inputSize} required ref={phone} type="tel"/><br/>
+            Address: <input style={styles.inputSize} required ref={address} type="text"/><br/>
             <button style={styles.button} ref={registerBtn} onClick={registerAction}>REGISTER</button>
         </div>)
 }

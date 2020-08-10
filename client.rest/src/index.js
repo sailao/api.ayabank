@@ -39,7 +39,7 @@ const App = ()=> {
         }).catch(err=>console.log(err))
     }
 
-    const handleRegister = (username, password, registerBtn)=>{
+    const handleRegister = (username, password, email, phone, address, registerBtn)=>{
         if(registerBtn.current){
             registerBtn.current.setAttribute("disabled", "disabled");
           }
@@ -50,7 +50,7 @@ const App = ()=> {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username, password
+                username, password, email, phone, address
             })
         }).then(res => {
             if(!res.ok) alert("Register fail");
@@ -99,11 +99,11 @@ const App = ()=> {
                 </tr>
                 </thead>
                 <tbody>
-                {users && users.map(({username}, key)=><tr key={key}>
+                {users && users.map(({username, email, phone, address}, key)=><tr key={key}>
                     <td>{username}</td>
-                    <td>{username}</td>
-                    <td>{username}</td>
-                    <td>{username}</td>
+                    <td>{email}</td>
+                    <td>{phone}</td>
+                    <td>{address}</td>
                 </tr>)}
                 </tbody>
             </table>
